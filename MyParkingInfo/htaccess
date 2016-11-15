@@ -1,0 +1,10 @@
+# Turn rewrite engine on
+Options +FollowSymlinks
+RewriteEngine on
+
+# map neat URL to internal URL
+#RewriteRule ^mobile/list/$   RestController.php?view=all [nc,qsa]
+#RewriteRule ^mobile/list/([0-9]+)/$   RestController.php?view=single&id=$1 [nc,qsa]
+RewriteRule ^parking/list/([a-z_\-0-9]+)/$   RestController.php?view=single&id=$1 [nc,qsa]
+RewriteRule ^parking/list/$   RestController.php?view=all [nc,qsa]
+RewriteRule ^parking/update/([a-z_\-0-9]+)/$   RestController.php?view=update&id=$1 [nc,qsa]
