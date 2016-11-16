@@ -94,6 +94,8 @@ $mysqli->close();
 			$parking = array(
 					"0" => "defaultLot",
 			);
+			$sql = "INSERT INTO MyParkingInfo (ParkingLotID,Status,FullCount,Price,LastUpdatedTime,LastUpdatedBy) VALUES ('".$id."',  '0', NULL , NULL , CURRENT_TIMESTAMP ,  'Dileep')";
+			$mysqli->query($sql);
 			return "not updated";
 		}
 	
