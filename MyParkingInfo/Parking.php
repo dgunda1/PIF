@@ -48,13 +48,18 @@ if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
 		//echo "ParkingLotID: " . $row["ParkingLotID"]. " -Status: " . $row["Status"]. "<br>";
 		$parking["".$row["ParkingLotID"].""] = $row["Status"];
+		$status = ($row["Status"] == '0'?"Available":"Full") ;
 	}
-return $parking;
+//return $parking;
+return  $status;
+
 } else {
 	$parking = array(
 			"0" => "defaultLot",
 	);
-	return $parking;
+	$sql = "INSERT INTO MyParkingInfo (ParkingLotID,Status,FullCount,Price,LastUpdatedTime,LastUpdatedBy) VALUES ('".$id."',  '0', NULL , NULL , CURRENT_TIMESTAMP ,  'Dileep')";
+	$mysqli->query($sql);
+	return "none";
 }
 
 
@@ -94,12 +99,9 @@ $mysqli->close();
 			$parking = array(
 					"0" => "defaultLot",
 			);
-			$sql = "INSERT INTO MyParkingInfo (ParkingLotID,Status,FullCount,Price,LastUpdatedTime,LastUpdatedBy) VALUES ('".$id."',  '0', NULL , NULL , CURRENT_TIMESTAMP ,  'Dileep')";
-			$mysqli->query($sql);
+			
 			return "not updated";
 		}
-	
-	
 		$mysqli->close();
 	
 	}
